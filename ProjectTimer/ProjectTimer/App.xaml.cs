@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ProjectTimer.Services;
+using ProjectTimer.Views;
 
 using Xamarin.Forms;
 
@@ -9,11 +7,21 @@ namespace ProjectTimer
 {
     public partial class App : Application
     {
+        private static ViewModelLocator _locator;
+
+        public static ViewModelLocator Locator
+        {
+            get
+            {
+                return _locator ?? (_locator = new ViewModelLocator());
+            }
+        }
+
         public App()
         {
             InitializeComponent();
 
-            MainPage = new ProjectTimer.MainPage();
+            MainPage = new TimerPage();
         }
 
         protected override void OnStart()
